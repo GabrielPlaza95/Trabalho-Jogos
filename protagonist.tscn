@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://degaxhlnj6spb"]
+
+[ext_resource type="Texture2D" uid="uid://cpn03uoiektnr" path="res://Protagonist.png" id="1_0j682"]
+[ext_resource type="Script" path="res://protagonist.gd" id="1_ppgti"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k6byh"]
+size = Vector2(10, 16)
+
+[sub_resource type="Animation" id="Animation_yk2dg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_3mqua"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_23xav"]
+_data = {
+"RESET": SubResource("Animation_yk2dg"),
+"walk": SubResource("Animation_3mqua")
+}
+
+[node name="Protagonist" type="CharacterBody2D"]
+position = Vector2(500, 250)
+scale = Vector2(8, 8)
+script = ExtResource("1_ppgti")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0j682")
+vframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_k6byh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_23xav")
+}
