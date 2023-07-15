@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpn03uoiektnr"
-path="res://.godot/imported/Protagonist.png-7294015308c7a4613e689b0c5fe464d1.ctex"
+uid="uid://baritl2lgy3s1"
+path="res://.godot/imported/castle_tiles.png-d1c9456edddf190bb2dd09e52e5f92a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Protagonist.png"
-dest_files=["res://.godot/imported/Protagonist.png-7294015308c7a4613e689b0c5fe464d1.ctex"]
+source_file="res://levels/castle_tiles.png"
+dest_files=["res://.godot/imported/castle_tiles.png-d1c9456edddf190bb2dd09e52e5f92a2.ctex"]
 
 [params]
 
