@@ -45,7 +45,7 @@ _data = {
 }
 
 [node name="Protagonist" type="CharacterBody2D"]
-position = Vector2(500, 250)
+position = Vector2(500, 249)
 scale = Vector2(8, 8)
 script = ExtResource("1_15al6")
 
