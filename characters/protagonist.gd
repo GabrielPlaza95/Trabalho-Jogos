@@ -7,9 +7,13 @@ extends CharacterBody2D
 var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var input_direction : Vector2 = Vector2.ZERO
 var direction : Vector2 = Vector2(-1, 0)
+var can_shoot : bool = true
 
 @onready var _animation_player = $AnimationPlayer
 @onready var _sprite = $Sprite2D
+@onready var _audio_player = $StrumSound
+@onready var _strum_timer = $StrumRecoil
+@onready var _strum_sound_timer = $StrumSoundLoop
 
 signal shoot(bullet, direction, position)
 
@@ -35,7 +39,15 @@ func _physics_process(delta):
 
 	# Handle Shooting
 	if Input.is_action_just_pressed("shoot"):
-		shoot.emit(Bullet, direction, position + direction * 14)
+		if can_shoot:
+			shoot.emit(Bullet, direction, position + direction * 14)
+			_strum_timer.start()
+			can_shoot = false
+		
+		if not _audio_player.playing:
+			_audio_player.play()
+			
+		_strum_sound_timer.start()
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("up") and is_on_floor():
@@ -51,5 +63,8 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func update_animation():
-	pass
+func _on_strum_recoil_timeout():
+	can_shoot = true
+
+func _on_strum_sound_loop_timeout():
+	_audio_player.stop()

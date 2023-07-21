@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://degaxhlnj6spb"]
+[gd_scene load_steps=9 format=3 uid="uid://degaxhlnj6spb"]
 
 [ext_resource type="Script" path="res://characters/protagonist.gd" id="1_15al6"]
 [ext_resource type="Texture2D" uid="uid://cpn03uoiektnr" path="res://characters/Protagonist.png" id="2_5q81r"]
 [ext_resource type="Script" path="res://characters/Damageable.gd" id="3_u5y2y"]
+[ext_resource type="AudioStream" uid="uid://cysiboaxvab32" path="res://characters/guitar_loop.wav" id="4_0011i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6byh"]
 size = Vector2(10, 16)
@@ -68,3 +69,17 @@ libraries = {
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("3_u5y2y")
 health_points = 3
+
+[node name="StrumSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0011i")
+
+[node name="StrumRecoil" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="StrumSoundLoop" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
+[connection signal="timeout" from="StrumRecoil" to="." method="_on_strum_recoil_timeout"]
+[connection signal="timeout" from="StrumSoundLoop" to="." method="_on_strum_sound_loop_timeout"]

@@ -23,7 +23,6 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	velocity.x = direction.x * speed
-	
 	move_and_slide()
 
 # Enemy hit player
