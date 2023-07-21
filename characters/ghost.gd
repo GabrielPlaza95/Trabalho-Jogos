@@ -34,3 +34,13 @@ func _on_attack_body_entered(body):
 # Move back and forth
 func _on_walk_cycle_timeout():
 	direction.x *= -1
+	
+func _on_damage():
+	_sprite.modulate = Color.WHITE
+	await get_tree().create_timer(0.2).timeout
+	_sprite.modulate = Color.BLACK
+
+func _on_death():
+	_sprite.modulate = Color.RED
+	await get_tree().create_timer(0.05).timeout
+	free()

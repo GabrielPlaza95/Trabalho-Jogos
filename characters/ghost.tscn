@@ -79,5 +79,7 @@ debug_color = Color(0.690196, 0, 0.701961, 0.419608)
 wait_time = 2.0
 autostart = true
 
+[connection signal="damaged" from="Damageable" to="." method="_on_damage"]
+[connection signal="dead" from="Damageable" to="." method="_on_death"]
 [connection signal="body_entered" from="Attack" to="." method="_on_attack_body_entered"]
 [connection signal="timeout" from="WalkCycle" to="." method="_on_walk_cycle_timeout"]

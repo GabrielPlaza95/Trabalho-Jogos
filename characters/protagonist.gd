@@ -16,6 +16,7 @@ var can_shoot : bool = true
 @onready var _strum_sound_timer = $StrumSoundLoop
 
 signal shoot(bullet, direction, position)
+signal game_over()
 
 var Bullet = preload("res://characters/bullet.tscn")
 
@@ -68,3 +69,14 @@ func _on_strum_recoil_timeout():
 
 func _on_strum_sound_loop_timeout():
 	_audio_player.stop()
+
+func _on_damage():
+	_sprite.modulate = Color.RED
+	await get_tree().create_timer(0.2).timeout
+	_sprite.modulate = Color.WHITE
+
+func _on_death():
+	_sprite.modulate = Color.RED
+	await get_tree().create_timer(0.05).timeout
+	free()
+	game_over.emit()

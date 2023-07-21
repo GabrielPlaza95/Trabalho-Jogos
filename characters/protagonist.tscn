@@ -81,5 +81,7 @@ one_shot = true
 wait_time = 0.35
 one_shot = true
 
+[connection signal="damaged" from="Damageable" to="." method="_on_damage"]
+[connection signal="dead" from="Damageable" to="." method="_on_death"]
 [connection signal="timeout" from="StrumRecoil" to="." method="_on_strum_recoil_timeout"]
 [connection signal="timeout" from="StrumSoundLoop" to="." method="_on_strum_sound_loop_timeout"]
