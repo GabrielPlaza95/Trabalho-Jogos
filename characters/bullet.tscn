@@ -36,11 +36,12 @@ animations = [{
 size = Vector2(6, 4)
 
 [node name="Bullet" type="Area2D"]
+collision_mask = 4
 script = ExtResource("1_l03h5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2b5jp")
-frame_progress = 0.626545
+frame_progress = 0.192421
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rjr32")

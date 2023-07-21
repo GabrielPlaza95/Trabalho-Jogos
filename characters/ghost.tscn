@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3djmk2ygm2k"]
+[gd_scene load_steps=9 format=3 uid="uid://d3djmk2ygm2k"]
 
 [ext_resource type="Texture2D" uid="uid://dhsdrmxjs7bp8" path="res://characters/Enemy.png" id="1_kya57"]
+[ext_resource type="Script" path="res://characters/ghost.gd" id="1_r813x"]
 [ext_resource type="Script" path="res://characters/Damageable.gd" id="2_86pyr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bb8v2"]
@@ -44,14 +45,18 @@ _data = {
 "walk": SubResource("Animation_oejgf")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tfog8"]
+size = Vector2(6, 12)
+
 [node name="Ghost" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_r813x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_kya57")
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_bb8v2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -61,3 +66,18 @@ libraries = {
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("2_86pyr")
+
+[node name="Attack" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
+position = Vector2(-5, -1)
+shape = SubResource("RectangleShape2D_tfog8")
+debug_color = Color(0.690196, 0, 0.701961, 0.419608)
+
+[node name="WalkCycle" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="body_entered" from="Attack" to="." method="_on_attack_body_entered"]
+[connection signal="timeout" from="WalkCycle" to="." method="_on_walk_cycle_timeout"]
