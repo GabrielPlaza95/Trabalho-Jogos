@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmodvx2hs0ytr"]
+
+[ext_resource type="Script" path="res://levels/StartScreen.gd" id="1_8ipqn"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_8ipqn")
+
+[node name="Play" type="Button" parent="."]
+offset_left = 108.0
+offset_top = 128.0
+offset_right = 273.0
+offset_bottom = 231.0
+text = "Iniciar"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 369.0
+offset_top = 128.0
+offset_right = 534.0
+offset_bottom = 231.0
+text = "Sair"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
