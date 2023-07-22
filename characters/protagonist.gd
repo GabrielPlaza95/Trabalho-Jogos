@@ -78,5 +78,6 @@ func _on_damage():
 func _on_death():
 	_sprite.modulate = Color.RED
 	await get_tree().create_timer(0.05).timeout
+	get_tree().change_scene_to_file("res://levels/StartScreen.tscn")
+	#game_over.emit()
 	free()
-	game_over.emit()
