@@ -12,7 +12,8 @@ var can_shoot : bool = true
 
 @onready var _animation_player = $AnimationPlayer
 @onready var _sprite = $Sprite2D
-@onready var _audio_player = $StrumSound
+@onready var _strum_audio = $StrumSound
+@onready var _glide_audio = $GlideSound
 @onready var _strum_timer = $StrumRecoil
 @onready var _strum_sound_timer = $StrumSoundLoop
 
@@ -47,8 +48,8 @@ func _physics_process(delta):
 			_strum_timer.start()
 			can_shoot = false
 		
-		if not _audio_player.playing:
-			_audio_player.play()
+		if not _strum_audio.playing:
+			_strum_audio.play()
 			
 		_strum_sound_timer.start()
 
@@ -63,20 +64,20 @@ func _physics_process(delta):
 	else:
 		velocity.x = 0
 		
-
 	move_and_slide()
 
 func _on_strum_recoil_timeout():
 	can_shoot = true
 
 func _on_strum_sound_loop_timeout():
-	_audio_player.stop()
+	_strum_audio.stop()
 
 func _on_damage():
 	_sprite.modulate = Color.RED
 	await get_tree().create_timer(0.2).timeout
 	_sprite.modulate = Color.WHITE
 	healthChanged.emit(damageable.health_points)
+	_glide_audio.play()
 
 func _on_death():
 	_sprite.modulate = Color.RED

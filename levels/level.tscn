@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bo4y7uuede8hi"]
+[gd_scene load_steps=22 format=3 uid="uid://bo4y7uuede8hi"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_5dhlo"]
 [ext_resource type="Texture2D" uid="uid://baritl2lgy3s1" path="res://levels/castle_tiles.png" id="1_qab8t"]
@@ -4662,6 +4662,21 @@ sources/3 = SubResource("TileSetAtlasSource_6bpod")
 sources/4 = SubResource("TileSetAtlasSource_d3w2y")
 sources/5 = SubResource("TileSetAtlasSource_v41fu")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v3bpl"]
+normal = Vector2(-1, 0)
+distance = 15.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cijbn"]
+distance = 17.5
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3sqh6"]
+normal = Vector2(0, 1)
+distance = 20.5
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0ixwk"]
+normal = Vector2(1, 0)
+distance = 4.0
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_5dhlo")
 
@@ -4687,6 +4702,10 @@ scale = Vector2(1, 1)
 position = Vector2(164, 37)
 zoom = Vector2(2, 2)
 process_callback = 0
+limit_left = -500
+limit_top = -500
+limit_right = 500
+limit_bottom = 500
 position_smoothing_speed = 20.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -4705,5 +4724,24 @@ position = Vector2(248, 88)
 [node name="heartsContainer" parent="CanvasLayer" instance=ExtResource("10_natxj")]
 offset_right = 167.0
 offset_bottom = 45.0
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(338, 22)
+shape = SubResource("WorldBoundaryShape2D_v3bpl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-51, 143.5)
+shape = SubResource("WorldBoundaryShape2D_cijbn")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-51, -83.5)
+shape = SubResource("WorldBoundaryShape2D_3sqh6")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-437, 23)
+shape = SubResource("WorldBoundaryShape2D_0ixwk")
 
 [connection signal="shoot" from="Protagonist" to="." method="_on_protagonist_shoot"]
