@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bo4y7uuede8hi"]
+[gd_scene load_steps=18 format=3 uid="uid://bo4y7uuede8hi"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_5dhlo"]
 [ext_resource type="Texture2D" uid="uid://baritl2lgy3s1" path="res://levels/castle_tiles.png" id="1_qab8t"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bgg2vkon60u5i" path="res://levels/neon_city_tiles.png" id="5_fes42"]
 [ext_resource type="Texture2D" uid="uid://cnf61w87kspm1" path="res://levels/metal_tileset.png" id="6_bfkl2"]
 [ext_resource type="PackedScene" uid="uid://d3djmk2ygm2k" path="res://characters/ghost.tscn" id="8_61pts"]
+[ext_resource type="PackedScene" uid="uid://6mhmxi1lnids" path="res://HUD/hearts_container.tscn" id="10_natxj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fsrpb"]
 texture = ExtResource("1_qab8t")
@@ -4698,5 +4699,11 @@ position = Vector2(90, 87)
 
 [node name="Ghost3" parent="." instance=ExtResource("8_61pts")]
 position = Vector2(248, 88)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="heartsContainer" parent="CanvasLayer" instance=ExtResource("10_natxj")]
+offset_right = 167.0
+offset_bottom = 45.0
 
 [connection signal="shoot" from="Protagonist" to="." method="_on_protagonist_shoot"]

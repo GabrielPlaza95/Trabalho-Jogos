@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 @export var speed : float = 75.0
 @export var jump_velocity : float = -250.0
-
+@export var maxHealth = 3 # tem que sincronizar com o health_points
+@onready var damageable = $Damageable
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var input_direction : Vector2 = Vector2.ZERO
@@ -17,6 +18,7 @@ var can_shoot : bool = true
 
 signal shoot(bullet, direction, position)
 signal game_over()
+signal healthChanged
 
 var Bullet = preload("res://characters/bullet.tscn")
 
@@ -74,6 +76,7 @@ func _on_damage():
 	_sprite.modulate = Color.RED
 	await get_tree().create_timer(0.2).timeout
 	_sprite.modulate = Color.WHITE
+	healthChanged.emit(damageable.health_points)
 
 func _on_death():
 	_sprite.modulate = Color.RED
