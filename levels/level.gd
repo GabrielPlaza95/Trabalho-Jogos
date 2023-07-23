@@ -8,8 +8,9 @@ func _ready():
 	heartsContainer.updateHearts(player.damageable.health_points)
 	player.healthChanged.connect(heartsContainer.updateHearts)
 
-func _on_protagonist_shoot(bullet, bullet_direction, bullet_position):
-	var spawned_bullet = bullet.instantiate()
+
+func _on_protagonist_shoot(Bullet, bullet_direction, bullet_position):
+	var spawned_bullet = Bullet.instantiate()
 	add_child(spawned_bullet)
 	spawned_bullet.position = bullet_position
 	spawned_bullet.direction = bullet_direction

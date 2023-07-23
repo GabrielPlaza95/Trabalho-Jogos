@@ -18,7 +18,6 @@ var can_shoot : bool = true
 @onready var _strum_sound_timer = $StrumSoundLoop
 
 signal shoot(bullet, direction, position)
-signal game_over()
 signal healthChanged
 
 var Bullet = preload("res://characters/bullet.tscn")
@@ -82,6 +81,6 @@ func _on_damage():
 func _on_death():
 	_sprite.modulate = Color.RED
 	await get_tree().create_timer(0.05).timeout
+	_glide_audio.play()
 	get_tree().change_scene_to_file("res://levels/StartScreen.tscn")
-	#game_over.emit()
 	free()
