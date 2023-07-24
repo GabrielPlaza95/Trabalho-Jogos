@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bo4y7uuede8hi"]
+[gd_scene load_steps=24 format=3 uid="uid://bo4y7uuede8hi"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_5dhlo"]
 [ext_resource type="Texture2D" uid="uid://baritl2lgy3s1" path="res://levels/castle_tiles.png" id="1_qab8t"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d3djmk2ygm2k" path="res://characters/ghost.tscn" id="8_61pts"]
 [ext_resource type="PackedScene" uid="uid://6mhmxi1lnids" path="res://HUD/hearts_container.tscn" id="10_natxj"]
 [ext_resource type="PackedScene" uid="uid://c06qcu8m5cab" path="res://levels/item.tscn" id="11_heoyr"]
+[ext_resource type="PackedScene" uid="uid://c4vgdg32kkeyg" path="res://levels/guitar.tscn" id="12_1ks0c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fsrpb"]
 texture = ExtResource("1_qab8t")
@@ -4763,4 +4764,8 @@ position = Vector2(-236, -41)
 [node name="Item" parent="." instance=ExtResource("11_heoyr")]
 position = Vector2(-264, -39)
 
+[node name="Guitar" parent="." instance=ExtResource("12_1ks0c")]
+position = Vector2(-420, 74)
+
 [connection signal="shoot" from="Protagonist" to="." method="_on_protagonist_shoot"]
+[connection signal="win" from="Guitar" to="." method="_on_guitar_win"]

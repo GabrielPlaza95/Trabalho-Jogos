@@ -14,3 +14,7 @@ func _on_protagonist_shoot(Bullet, bullet_direction, bullet_position):
 	add_child(spawned_bullet)
 	spawned_bullet.position = bullet_position
 	spawned_bullet.direction = bullet_direction
+
+func _on_guitar_win():
+	print("caralho")
+	get_tree().change_scene_to_file("res://levels/StartScreen.tscn")
