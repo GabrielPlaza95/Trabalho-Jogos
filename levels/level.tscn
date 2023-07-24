@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bo4y7uuede8hi"]
+[gd_scene load_steps=23 format=3 uid="uid://bo4y7uuede8hi"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_5dhlo"]
 [ext_resource type="Texture2D" uid="uid://baritl2lgy3s1" path="res://levels/castle_tiles.png" id="1_qab8t"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cnf61w87kspm1" path="res://levels/metal_tileset.png" id="6_bfkl2"]
 [ext_resource type="PackedScene" uid="uid://d3djmk2ygm2k" path="res://characters/ghost.tscn" id="8_61pts"]
 [ext_resource type="PackedScene" uid="uid://6mhmxi1lnids" path="res://HUD/hearts_container.tscn" id="10_natxj"]
+[ext_resource type="PackedScene" uid="uid://c06qcu8m5cab" path="res://levels/item.tscn" id="11_heoyr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fsrpb"]
 texture = ExtResource("1_qab8t")
@@ -4758,5 +4759,8 @@ position = Vector2(-126, 88)
 
 [node name="Ghost6" parent="." instance=ExtResource("8_61pts")]
 position = Vector2(-236, -41)
+
+[node name="Item" parent="." instance=ExtResource("11_heoyr")]
+position = Vector2(-264, -39)
 
 [connection signal="shoot" from="Protagonist" to="." method="_on_protagonist_shoot"]

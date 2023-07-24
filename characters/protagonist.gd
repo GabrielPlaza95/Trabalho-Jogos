@@ -14,6 +14,7 @@ var can_shoot : bool = true
 @onready var _sprite = $Sprite2D
 @onready var _strum_audio = $StrumSound
 @onready var _glide_audio = $GlideSound
+@onready var _chord_audio = $ChordSound
 @onready var _strum_timer = $StrumRecoil
 @onready var _strum_sound_timer = $StrumSoundLoop
 
@@ -78,9 +79,13 @@ func _on_damage():
 	healthChanged.emit(damageable.health_points)
 	_glide_audio.play()
 
+func _on_healing():
+	healthChanged.emit(damageable.health_points)
+	_chord_audio.play()
+
 func _on_death():
 	_sprite.modulate = Color.RED
 	await get_tree().create_timer(0.05).timeout
-	_glide_audio.play()
+	await _glide_audio.finished
 	get_tree().change_scene_to_file("res://levels/StartScreen.tscn")
-	free()
+	queue_free()
