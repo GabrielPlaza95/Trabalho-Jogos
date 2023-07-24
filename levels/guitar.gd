@@ -2,8 +2,9 @@ extends Area2D
 
 signal win
 
+@onready var chord = $AudioStreamPlayer
 
-func _on_body_entered(body):
-	if body.name == "protagonist":
-		win.emit()
-		print("you win!!") #  change scene to you win screen
+func _on_body_entered(_body):
+	chord.play()
+	await get_tree().create_timer(2.5).timeout
+	win.emit()
